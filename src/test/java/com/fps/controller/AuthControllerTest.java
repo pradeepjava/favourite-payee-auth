@@ -47,7 +47,8 @@ public class AuthControllerTest {
 	}
 
 	private ResponseEntity<CommonResponse> getResponse(boolean status) {
-		return new ResponseEntity<>(AuthHelper.formatCommonResponse(status), HttpStatus.OK);
+		CommonResponse formatCommonResponse = AuthHelper.formatCommonResponse(status);
+		return new ResponseEntity<>(formatCommonResponse, AuthHelper.getStatusCode(formatCommonResponse.getStatus()));
 
 	}
 }
