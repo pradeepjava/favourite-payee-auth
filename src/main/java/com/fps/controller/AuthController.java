@@ -26,10 +26,11 @@ public class AuthController {
 
 	@PostMapping("/api/v1/login")
 	public ResponseEntity<CommonResponse> doLogin(@RequestBody LoginRequest request) {
-		logger.info("Request received for login: {}", request);
+		logger.debug("Request received for login: {}", request);
 		boolean isValidUser = service.isValidUser(request.getCustomerId());
 		final CommonResponse response = AuthHelper.formatCommonResponse(isValidUser);
-		return new ResponseEntity<CommonResponse>(response, HttpStatus.OK);
+		
+		return new ResponseEntity<CommonResponse>(response, AuthHelper.getStatusCode(response.getStatus()));
 	}
 
 }

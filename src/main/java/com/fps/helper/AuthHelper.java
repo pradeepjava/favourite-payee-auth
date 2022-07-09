@@ -1,5 +1,7 @@
 package com.fps.helper;
 
+import org.springframework.http.HttpStatus;
+
 import com.fps.model.CommonResponse;
 
 public class AuthHelper {
@@ -15,5 +17,8 @@ public class AuthHelper {
 		}
 		return new CommonResponseBuilder().withStatus(NOT_FOUND).withMessage(USER_NOT_FOUND).build();
 	}
-
+	
+	public static HttpStatus getStatusCode(int status) {
+		return status==OK? HttpStatus.OK:HttpStatus.NOT_FOUND;
+	}
 }
